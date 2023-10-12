@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\holyteaAPI;
+use App\Http\Controllers\API\holyteaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ use App\Http\Controllers\API\holyteaAPI;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("data",[holyteaAPI::class,'getData']);
+Route::get("data",[holyteaController::class,'getData']);

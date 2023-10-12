@@ -4,9 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-class holyteaAPI extends Controller
+
+class holyteaController extends Controller
 {
-      function getData() {
+    function getData() {
         $chocoMilk = [
             "id" => 1,
             "name" => "Holy Choco Milk"
@@ -19,6 +20,4 @@ class holyteaAPI extends Controller
         
         return [$chocoMilk, $chocoStrawberry];
     }
-    
-    
 }
