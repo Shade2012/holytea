@@ -18,9 +18,9 @@ class ProductController extends Controller
 
     //Kita buat View Product Kalau di cari berdasarkan id
 
-    public function show($uuid)
+    public function show($id)
     {
-        $product = Product::where('uuid', $uuid)->first();
+        $product = Product::where('id', $id)->first();
         return response()->json(['data' => $product]);
     }
 
@@ -28,23 +28,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product($request->all());
-        $product->uuid = \Str::uuid();
         $product->save();
         return response()-json(['message' => 'Data created successfully', 'data' => $product]);
     }
 
     //Kita buat update
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $id)
     {
-        $product = Product::where('uuid', $uuid)->first();
+        $product = Product::where('id', $id)->first();
         $product->update($request->all());
         return response()->json(['message' => 'Data updated successfully', 'data' => $product]);
     }
 
     //Kita buat function delete
-    public function destroy($uuid)
+    public function destroy($id)
     {
-        $product = Product::where('uuid', $uuid)->first();
+        $product = Product::where('id', $id)->first();
         $product->delete();
         return response()->json(['message' => 'Data updated successfully']);
     }
