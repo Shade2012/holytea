@@ -27,10 +27,13 @@ class ProductController extends Controller
     //Kita buat function Create data
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['product_code'] = $this->generateProductCode(); // Replace with your logic for generating product codes
+        //$data = $request->all();
+        //$data['product_code'] = $this->generateProductCode(); // Replace with your logic for generating product codes
 
-        $product = new Product($request->all());
+        $product = new Product();
+        $product->product_code = $request->product_code;
+        $product->product_name = $request->product_name;
+        $product->product_price = $request->product_price;
         $product->save();
         return response()-json(['message' => 'Data created successfully', 'data' => $product]);
     }
@@ -39,7 +42,10 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::where('id', $id)->first();
-        $product->update($request->all());
+        $product->product_code = $request->product_code;
+        $product->product_name = $request->product_name;
+        $product->product_price = $request->product_price;
+        $product->update();
         return response()->json(['message' => 'Data updated successfully', 'data' => $product]);
     }
 
