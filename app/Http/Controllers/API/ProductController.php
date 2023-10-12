@@ -27,6 +27,9 @@ class ProductController extends Controller
     //Kita buat function Create data
     public function store(Request $request)
     {
+        $data = $request->all();
+        $data['product_code'] = $this->generateProductCode(); // Replace with your logic for generating product codes
+
         $product = new Product($request->all());
         $product->save();
         return response()-json(['message' => 'Data created successfully', 'data' => $product]);
@@ -46,5 +49,12 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
         $product->delete();
         return response()->json(['message' => 'Data updated successfully']);
+    }
+
+    private function generateProductCode()
+    {
+        // Implement your own logic to generate product codes
+        // For example, you might generate a random string, concatenate with date, etc.
+        return 'P' . date('YmdHis') . mt_rand(1000, 9999);
     }
 }
